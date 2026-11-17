@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Физика ОГЭ с Камилем">
+<meta property="og:description" content="Индивидуальная подготовка к ОГЭ по физике, 8–9 класс. Первое занятие бесплатно.">
+<meta property="og:image" content="img/kamil.jpg">
+<meta property="og:type" content="website">
+<style>html,body{margin:0} [hidden]{display:none!important} img{max-width:100%}</style>
+<title>Физика ОГЭ с Камилем</title>
+<meta name="description" content="Индивидуальная подготовка к ОГЭ по физике для 8–9 классов. Аспирант МГТУ им. Баумана, преподаю с 2019 года. Первое занятие бесплатно.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Layout: школьная тетрадь в клетку — сетка 24px, красные поля, синяя ручка; одна колонка 1120px, первый экран: текст + фото на скотче */
+:root {
+  --paper: #F6F8FC;
+  --grid: rgba(52, 92, 170, .10);
+  --card: #FFFFFF;
+  --line: #DCE3EF;
+  --ink: #131D45;
+  --ink-soft: #4B5672;
+  --pen: #2346C4;
+  --pen-ink: #FFFFFF;
+  --margin: #D6453A;
+  --wa: #11804A;
+  --tape: rgba(255, 221, 140, .75);
+  --shadow: 0 10px 30px rgba(19, 29, 69, .10);
+  --f-display: 'Unbounded', 'Arial Black', Arial, sans-serif;
+  --f-body: 'Onest', 'Segoe UI', Arial, sans-serif;
+  --f-hand: 'Caveat', 'Comic Sans MS', cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1326; --grid: rgba(140, 168, 255, .07); --card: #151D37; --line: #27325A;
+    --ink: #E8ECF7; --ink-soft: #A7B1CA; --pen: #8DA5FF; --pen-ink: #0D1326; --margin: #FF7D70;
+    --wa: #2FB36A; --tape: rgba(255, 221, 140, .35); --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1326; --grid: rgba(140, 168, 255, .07); --card: #151D37; --line: #27325A;
+  --ink: #E8ECF7; --ink-soft: #A7B1CA; --pen: #8DA5FF; --pen-ink: #0D1326; --margin: #FF7D70;
+  --wa: #2FB36A; --tape: rgba(255, 221, 140, .35); --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--pen); }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid var(--pen); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: 72px; }
+.band-alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--pen); }
+.sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; max-width: 720px; }
+.sec-head h2 { font-size: clamp(24px, 3.4vw, 36px); }
+.hand { font-family: var(--f-hand); font-size: 26px; line-height: 1.1; color: var(--margin); }
+
+/* top bar */
+.top { padding-block: 18px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { font-family: var(--f-display); font-weight: 700; font-size: 16px; color: var(--ink); text-decoration: none; }
+.brand span { color: var(--pen); }
+.nav { display: flex; gap: 22px; font-size: 15px; }
+.nav a { color: var(--ink-soft); text-decoration: none; }
+.nav a:hover { color: var(--pen); }
+
+/* buttons */
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-wa { background: var(--wa); color: #FFFFFF; }
+.btn-tg { background: transparent; color: var(--pen); border-color: var(--pen); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+
+/* hero: тетрадный лист */
+.hero { background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; padding-block: 40px 72px; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; position: relative; }
+.hero-grid::before { content: ""; position: absolute; left: -28px; top: -12px; bottom: -12px; width: 2px; background: var(--margin); opacity: .65; }
+.hero-text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.hero h1 { font-size: clamp(30px, 4.6vw, 52px); font-weight: 700; letter-spacing: -.01em; }
+.hero h1 em { font-style: normal; color: var(--pen); }
+.lead { font-size: 19px; color: var(--ink-soft); max-width: 34em; }
+.free { display: flex; align-items: center; gap: 10px; }
+
+.photo { position: relative; justify-self: center; width: min(400px, 100%); background: var(--card); padding: 12px 12px 18px; box-shadow: var(--shadow); transform: rotate(1.6deg); border-radius: 4px; }
+.photo::before { content: ""; position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; margin-left: -60px; background: var(--tape); transform: rotate(-4deg); }
+.photo img { border-radius: 2px; aspect-ratio: 760 / 880; object-fit: cover; width: 100%; }
+.photo figcaption { font-family: var(--f-hand); font-size: 24px; text-align: center; margin-top: 8px; color: var(--ink); }
+
+/* цифры */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--card); }
+.stat { padding: 22px 20px; display: flex; flex-direction: column; gap: 4px; border-left: 1px solid var(--line); min-width: 0; }
+.stat:first-child { border-left: none; }
+.stat b { font-family: var(--f-display); font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: var(--pen); }
+.stat span { font-size: 15px; color: var(--ink-soft); }
+
+/* подход */
+.approach { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 48px; }
+.point { display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 2px solid var(--ink); min-width: 0; }
+.point h3 { font-size: 19px; font-weight: 500; }
+.point p { color: var(--ink-soft); max-width: 36em; }
+
+/* задача */
+.task { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.sheet { position: relative; background-color: var(--card); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; border: 1px solid var(--line); border-radius: 8px; padding: 28px 28px 28px 52px; box-shadow: var(--shadow); min-width: 0; }
+.sheet::before { content: ""; position: absolute; left: 32px; top: 0; bottom: 0; width: 2px; background: var(--margin); opacity: .65; }
+.sheet .label { font-family: var(--f-hand); font-size: 24px; color: var(--margin); }
+.sheet p.q { font-size: 18px; margin-top: 6px; }
+.reveal { margin-top: 18px; background: none; border: 2px dashed var(--pen); color: var(--pen); font: 600 15px var(--f-body); padding: 10px 16px; border-radius: 10px; cursor: pointer; }
+.solution { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.solution .formula { font-family: var(--f-hand); font-size: 30px; color: var(--pen); line-height: 1.2; }
+.task-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.task-side p { color: var(--ink-soft); }
+
+/* шаги */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; }
+.step { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.step::before { counter-increment: step; content: counter(step); font-family: var(--f-display); font-weight: 700; font-size: 20px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--pen); color: var(--pen); }
+.step h3 { font-size: 17px; font-weight: 500; }
+.step p { color: var(--ink-soft); }
+
+/* обо мне */
+.about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.about-text { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.facts { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.facts li { padding-left: 26px; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .62em; width: 12px; height: 2px; background: var(--margin); }
+.docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.doc { background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; cursor: zoom-in; display: flex; flex-direction: column; gap: 8px; text-align: left; color: var(--ink); font: inherit; background-color: var(--card); min-width: 0; }
+.doc img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; border-radius: 4px; }
+.doc.wide { grid-column: span 3; }
+.doc.wide img { aspect-ratio: 16 / 8; object-position: center; }
+.doc span { font-size: 13px; line-height: 1.35; color: var(--ink-soft); }
+
+/* отзывы */
+.reviews { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+.review { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.review blockquote { margin: 0; font-size: 18px; line-height: 1.55; }
+.review figcaption { display: flex; flex-direction: column; gap: 2px; }
+.review figcaption span { font-size: 14px; color: var(--ink-soft); }
+.reviews-note { margin-top: 20px; font-size: 15px; color: var(--ink-soft); }
+
+/* цены */
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.price { border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 6px; background: var(--card); }
+.price.hl { border: 2px solid var(--pen); }
+.price .dur { font-size: 15px; color: var(--ink-soft); }
+.price .sum { font-family: var(--f-display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.where { margin-top: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.where div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.where b { font-weight: 600; }
+.where span { color: var(--ink-soft); }
+
+/* контакты */
+.contact { background: var(--ink); color: var(--paper); }
+.contact .sec-head h2, .contact .eyebrow { color: var(--paper); }
+.contact .eyebrow { opacity: .8; }
+.contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.contact-main { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.contact .btn-tg { color: var(--paper); border-color: var(--paper); }
+.phone { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.phone .num { font-family: var(--f-display); font-size: clamp(20px, 3vw, 28px); font-weight: 500; user-select: all; font-variant-numeric: tabular-nums; }
+.copy { background: none; color: var(--paper); border: 1px solid currentColor; border-radius: 8px; padding: 8px 14px; font: 500 14px var(--f-body); cursor: pointer; opacity: .85; }
+.contact .note { opacity: .8; font-size: 15px; }
+.qrs { display: flex; gap: 20px; justify-content: flex-end; }
+.qr { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 14px; }
+.qr .code { background: #FFFFFF; padding: 10px; border-radius: 10px; width: 152px; height: 152px; }
+.qr .code img, .qr .code canvas { width: 132px !important; height: 132px !important; }
+
+footer { padding-block: 28px; font-size: 14px; color: var(--ink-soft); }
+
+/* мобильная кнопка */
+.mbar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; gap: 10px; background: var(--card); border-top: 1px solid var(--line); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.mbar .btn { flex: 1; padding: 12px 10px; font-size: 15px; }
+
+dialog { border: none; border-radius: 12px; padding: 12px; max-width: min(92vw, 900px); background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgba(10, 14, 30, .7); }
+dialog img { max-height: 80vh; width: auto; margin: 0 auto; }
+dialog .close { margin-top: 10px; width: 100%; background: var(--pen); color: var(--pen-ink); border: none; border-radius: 8px; padding: 10px; font: 600 15px var(--f-body); cursor: pointer; }
+
+@media (max-width: 900px) {
+  .hero-grid, .task, .about, .contact-grid, .reviews { grid-template-columns: 1fr; }
+  .hero-grid::before { display: none; }
+  .photo { width: min(320px, 82%); }
+  .qrs { display: none; }
+  .steps, .prices { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .nav { display: none; }
+  .band { padding-block: 52px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3) { border-left: none; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .approach, .where { grid-template-columns: 1fr; }
+  .docs { grid-template-columns: repeat(2, 1fr); }
+  .doc.wide { grid-column: span 2; }
+  .mbar { display: flex; }
+  body { padding-block-end: 80px; }
+  .hero .btns { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2z"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.8 12.9l-4.6-1.4c-1-.3-1-1 .2-1.5l18-6.9c.8-.3 1.6.2 1.5 1.2z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#start">Камиль <span>·</span> физика ОГЭ</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#approach">Как занимаемся</a>
+      <a href="#about">Обо мне</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#price">Цена</a>
+      <a href="#contact">Записаться</a>
+    </nav>
+  </div>
+</header>
+
+<main id="start">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Репетитор по физике · 8–9 класс</p>
+          <h1>Подготовка к ОГЭ по физике <em>через задачи</em></h1>
+          <p class="lead">Индивидуальные занятия онлайн или у м. Бауманская. Аспирант МГТУ им. Баумана, преподаю с 2019 года — все мои ученики сдают ОГЭ на 4 и 5.</p>
+          <div class="btns">
+            <a class="btn btn-wa" href="https://wa.me/79205267920?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%84%D0%B8%D0%B7%D0%B8%D0%BA%D0%B5." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+            <a class="btn btn-tg" href="https://t.me/+79205267920" target="_blank" rel="noopener"><svg><use href="#i-tg"/></svg>Telegram</a>
+          </div>
+          <p class="free"><span class="hand">Первое занятие — бесплатно</span></p>
+        </div>
+        <figure class="photo">
+          <img src="img/kamil.jpg" alt="Камиль Файзрахманов, репетитор по физике" width="760" height="880">
+          <figcaption>Камиль Файзрахманов</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b>с 2019</b><span>готовлю к ОГЭ</span></div>
+    <div class="stat"><b>4 и 5</b><span>оценки моих учеников на ОГЭ</span></div>
+    <div class="stat"><b>5,0</b><span>оценка в отзывах на Авито</span></div>
+    <div class="stat"><b>МГУ, МГТУ</b><span>где учатся мои выпускники</span></div>
+  </div>
+
+  <section class="band" id="approach">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Как занимаемся</p>
+        <h2>Понимать физику, а не помнить формулы</h2>
+      </div>
+      <div class="approach">
+        <div class="point"><h3>Теория — через задачи</h3><p>Минимум сухой теории. Берём задачу, разбираем её и по ходу подтягиваем нужные законы и формулы.</p></div>
+        <div class="point"><h3>Учу думать</h3><p>Главное — понять, как устроена задача. Это помогает и на ОГЭ, и дальше в 10–11 классе.</p></div>
+        <div class="point"><h3>На связи между уроками</h3><p>После занятия — домашнее задание. Если что-то не получается, пишите: подскажу и задам наводящий вопрос.</p></div>
+        <div class="point"><h3>Только индивидуально</h3><p>Занимаюсь один на один и беру мало учеников, поэтому знаю сильные и слабые места каждого. Родителям регулярно рассказываю о прогрессе.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-alt" aria-labelledby="task-title">
+    <div class="wrap task">
+      <div class="task-side">
+        <p class="eyebrow">Попробуйте сами</p>
+        <h2 id="task-title" style="font-size:clamp(24px,3.4vw,36px)">Так выглядит разбор на занятии</h2>
+        <p>Сначала разбираемся, что происходит физически, и только потом пишем формулу. Решите задачу и сверьтесь с решением.</p>
+        <p class="hand">Сначала смысл, потом формула</p>
+      </div>
+      <div class="sheet">
+        <p class="label">Задача-разминка</p>
+        <p class="q">Мяч подбросили вертикально вверх со скоростью 10&#160;м/с. На какую максимальную высоту он поднимется? Сопротивлением воздуха пренебречь, g&#160;=&#160;10&#160;м/с².</p>
+        <button class="reveal" id="reveal" type="button" aria-expanded="false" aria-controls="solution">Показать решение</button>
+        <div class="solution" id="solution" hidden>
+          <p>В верхней точке мяч на мгновение останавливается: вся кинетическая энергия перешла в потенциальную. Масса сокращается.</p>
+          <p class="formula">mv²/2 = mgh → h = v²/(2g)</p>
+          <p class="formula">h = 10² / (2 · 10) = 5 м</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Как начать</p>
+        <h2>Три шага до регулярных занятий</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Напишите в WhatsApp или Telegram</h3><p>Расскажите класс и цель: сдать ОГЭ, подтянуть оценку или подготовиться к профильному классу.</p></div>
+        <div class="step"><h3>Бесплатное пробное занятие</h3><p>Определим уровень и посмотрим, как ученику удобнее работать.</p></div>
+        <div class="step"><h3>План до экзамена</h3><p>Составлю план по темам, дальше занимаемся по расписанию, удобному вам.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-alt" id="about">
+    <div class="wrap about">
+      <div class="about-text">
+        <p class="eyebrow">Обо мне</p>
+        <h2 style="font-size:clamp(24px,3.4vw,36px)">Камиль Файзрахманов</h2>
+        <p>Физику я применяю не только на уроках: работаю руководителем проекта в Центре водородной энергетики и пишу диссертацию в МГТУ им. Н.&#160;Э.&#160;Баумана.</p>
+        <ul class="facts">
+          <li>Бакалавриат и магистратура МГТУ им. Баумана, магистратура — с отличием</li>
+          <li>Аспирант МГТУ им. Баумана</li>
+          <li>Двукратный призёр олимпиады «Я — профессионал» (2023 и 2024)</li>
+          <li>Призёр Всероссийской олимпиады по математике (2-я степень)</li>
+          <li>Доклады на научных конференциях, в том числе международных</li>
+          <li>Мои выпускники учатся в МГТУ им. Баумана, МГУ и других сильных вузах</li>
+        </ul>
+      </div>
+      <div class="docs" aria-label="Дипломы и сертификаты">
+        <button class="doc wide" type="button" data-full="img/diplom.jpg"><img src="img/diplom.jpg" alt="Диплом магистра с отличием МГТУ им. Баумана" loading="lazy" width="1100" height="756"><span>Диплом магистра с отличием, МГТУ им. Баумана, 2025</span></button>
+        <button class="doc" type="button" data-full="img/olymp-2024.jpg"><img src="img/olymp-2024.jpg" alt="Диплом призёра олимпиады «Я — профессионал» 2024" loading="lazy" width="700" height="991"><span>«Я — профессионал», 2024</span></button>
+        <button class="doc" type="button" data-full="img/olymp-2023.jpg"><img src="img/olymp-2023.jpg" alt="Диплом призёра олимпиады «Я — профессионал» 2023" loading="lazy" width="700" height="989"><span>«Я — профессионал», 2023</span></button>
+        <button class="doc" type="button" data-full="img/conf-ionics.jpg"><img src="img/conf-ionics.jpg" alt="Сертификат докладчика международной конференции" loading="lazy" width="700" height="990"><span>Доклад на международной конференции, 2026</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Отзывы</p>
+        <h2>Что пишут родители</h2>
+      </div>
+      <div class="reviews">
+        <figure class="review">
+          <blockquote>«С Камилем сын готовился к тестированию в класс „Математическая вертикаль“. Проработали много материала, разные типы задач, варианты тестирования за прошлый год. Со слов сына, с Камилем приятно общаться и учиться. <…> Планируем продолжить занятия в следующем учебном году и по математике, и по физике.»</blockquote>
+          <figcaption><b>Натэлла</b><span>Подготовка в класс «Математическая вертикаль» · отзыв на Профи.ру</span></figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>«Сыну понравилось обучение! Камиль помог во всём разобраться. Будем продолжать заниматься.»</blockquote>
+          <figcaption><b>Валентин</b><span>ЕГЭ по математике · отзыв на Профи.ру</span></figcaption>
+        </figure>
+      </div>
+      <p class="reviews-note">Остальные отзывы — на Профи.ру и Авито.</p>
+    </div>
+  </section>
+
+  <section class="band band-alt" id="price">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Цена</p>
+        <h2>Стоимость занятий</h2>
+      </div>
+      <div class="prices">
+        <div class="price hl"><span class="dur">Пробное занятие</span><span class="sum">Бесплатно</span><span class="dur">уровень и план подготовки</span></div>
+        <div class="price"><span class="dur">60 минут</span><span class="sum">2 500 ₽</span><span class="dur">индивидуально</span></div>
+        <div class="price"><span class="dur">90 минут</span><span class="sum">3 750 ₽</span><span class="dur">индивидуально</span></div>
+      </div>
+      <div class="where">
+        <div><b>Онлайн</b><span>Из любого района и города.</span></div>
+        <div><b>Очно</b><span>Рядом с метро Бауманская, Электрозаводская, Сокольники, Преображенская площадь, Лефортово.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-main">
+        <div class="sec-head" style="margin-bottom:0">
+          <p class="eyebrow">Записаться</p>
+          <h2>Запишитесь на бесплатное пробное занятие</h2>
+        </div>
+        <div class="btns">
+          <a class="btn btn-wa" href="https://wa.me/79205267920?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%84%D0%B8%D0%B7%D0%B8%D0%BA%D0%B5." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+          <a class="btn btn-tg" href="https://t.me/+79205267920" target="_blank" rel="noopener"><svg><use href="#i-tg"/></svg>Написать в Telegram</a>
+        </div>
+        <div class="phone">
+          <span class="num" id="num">+7 920 526-79-20</span>
+          <button class="copy" id="copy" type="button">Скопировать номер</button>
+        </div>
+        <p class="note">Номер привязан к WhatsApp и Telegram. Отвечаю в течение дня.</p>
+      </div>
+      <div class="qrs" id="qrs" aria-hidden="true">
+        <div class="qr"><div class="code" id="qr-wa"></div><span>WhatsApp</span></div>
+        <div class="qr"><div class="code" id="qr-tg"></div><span>Telegram</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Камиль Файзрахманов · репетитор по физике · Москва</div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-wa" href="https://wa.me/79205267920?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D1%84%D0%B8%D0%B7%D0%B8%D0%BA%D0%B5." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="btn btn-tg" href="https://t.me/+79205267920" target="_blank" rel="noopener"><svg><use href="#i-tg"/></svg>Telegram</a>
+</div>
+
+<dialog id="lb" aria-label="Документ">
+  <img id="lb-img" src="" alt="">
+  <button class="close" id="lb-close" type="button">Закрыть</button>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('reveal');
+  var sol = document.getElementById('solution');
+  btn.addEventListener('click', function () {
+    var open = sol.hidden;
+    sol.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Скрыть решение' : 'Показать решение';
+  });
+
+  var copy = document.getElementById('copy');
+  copy.addEventListener('click', function () {
+    var text = '+79205267920';
+    function selectNum() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('num'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copy.textContent = 'Номер выделен';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { copy.textContent = 'Скопировано'; }, selectNum);
+    } catch (e) { selectNum(); }
+    setTimeout(function () { copy.textContent = 'Скопировать номер'; }, 2500);
+  });
+
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('.doc').forEach(function (d) {
+    d.addEventListener('click', function () {
+      lbImg.src = d.getAttribute('data-full');
+      lbImg.alt = d.querySelector('img').alt;
+      if (lb.showModal) lb.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+
+  try {
+    var opts = { width: 132, height: 132, colorDark: '#131D45', colorLight: '#FFFFFF', correctLevel: QRCode.CorrectLevel.M };
+    opts.text = 'https://wa.me/79205267920'; new QRCode(document.getElementById('qr-wa'), opts);
+    opts.text = 'https://t.me/+79205267920'; new QRCode(document.getElementById('qr-tg'), opts);
+  } catch (e) {
+    document.getElementById('qrs').hidden = true;
+  }
+})();
+</script>
+
+</body>
+</html>
